@@ -27,7 +27,7 @@ public class GmailTest {
     private StringBuffer verificationErrors = new StringBuffer();
 
     @BeforeClass(alwaysRun = true)
-    public void setUp()  {
+    public void setUp() {
     /*File pathBinary = new File("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
     FirefoxBinary Binary= new FirefoxBinary(pathBinary);
     FirefoxProfile firefoxPro = new FirefoxProfile();
@@ -38,7 +38,7 @@ public class GmailTest {
     }
 
     @Test
-    public void testGmail()  {
+    public void testGmail() {
         driver.get(baseUrl + "/?gfe_rd=cr&ei=GHxZV7r2FOKcwwO_yaOgDg&gws_rd=ssl");
         driver.findElement(By.id("lst-ib")).clear();
         driver.findElement(By.id("lst-ib")).sendKeys("gmail.com");
@@ -50,14 +50,13 @@ public class GmailTest {
         driver.findElement(By.id("signIn")).click();
 
 
-
         driver.findElement(By.id(":2t")).click();
 
         //Create an array of elements
         List<WebElement> listOfElements;
-        listOfElements = driver.findElements(By.xpath("//div[@id=':30']/*//*//div[@role='menuitem'or'menuitemcheckbox'][@style='-moz-user-select: none;']"));
+        listOfElements = driver.findElements(By.xpath("//div[@id=\":30\"]/*/div[@role=\"menuitem\"or\"menuitemcheckbox\"][@style=\"-moz-user-select: none;\"]"));
 
-        //Cycle
+
         for (WebElement element : listOfElements) {
 
             //Create actions of moving mouse over the elements
@@ -68,10 +67,9 @@ public class GmailTest {
 
 
             //Get a value of the background color
-            element.getCssValue("background-color");
+            System.out.println(element.getCssValue("background-color"));
             assertTrue(element.isDisplayed(), "Element doesn't present");
         }
-
 
 
         driver.findElement(By.cssSelector("a[title='Приложения Google']")).click();
@@ -79,10 +77,16 @@ public class GmailTest {
 
         //Create array of Google-apps icons and get its names
         List<WebElement> listOfIcons;
-        listOfIcons = driver.findElements(By.cssSelector("li.gb_Z"));
+        listOfIcons = driver.findElements(By.cssSelector(" li.gb_Z"));
         for (WebElement icon : listOfIcons) {
             System.out.println(icon.getText());
         }
+        WebElement appsElement = driver.findElement(By.cssSelector("a[id='gb192']"));
+        Actions builder = new Actions(driver);
+        builder.moveToElement(appsElement);
+        Action overAppsElement = builder.build();
+        overAppsElement.perform();
+        System.out.println(appsElement.getCssValue("border-top-color"));
 
 
         //check the quantity of the mails
@@ -93,23 +97,24 @@ public class GmailTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         //Thread.sleep(2000);
     }
-    @Test
-            public void testLetterCount () throws Exception{
-        String valueAfterClicking = driver.findElement(By.cssSelector("div[aria-disabled=\"false\"]>span.Dj>b:nth-child(1)")).getAttribute("textContent");
-        System.out.println("here" + valueAfterClicking);
-        // Assert.assertEquals(valueAfterClicking,"51");
+
+   @Test
+    public void testLetterCount() {
+       String valueAfterClicking = driver.findElement(By.cssSelector("span.Dj>b:nth-child(1)")).getAttribute("textContent");
+       System.out.println(valueAfterClicking);
+       // Assert.assertEquals(valueAfterClicking,"51");
 
 
-        driver.findElement(By.cssSelector("a.wrap_label > div.text_label")).click();
+       driver.findElement(By.cssSelector("a.wrap_label > div.text_label")).click();
 
+   }
 
-    }
 
 
     @AfterClass(alwaysRun = true)
-    public void tearDown()  {
+    public void tearDown() {
         driver.quit();
 
-        }
     }
+}
 
