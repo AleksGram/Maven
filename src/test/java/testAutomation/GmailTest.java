@@ -41,10 +41,10 @@ public class GmailTest {
     driver.findElement(By.id("lst-ib")).clear();
     driver.findElement(By.id("lst-ib")).sendKeys("gmail.com");
     driver.findElement(By.cssSelector(".r> a")).click();
-    driver.findElement(By.id("Email")).sendKeys("agramatik1@gmail.com");
+    driver.findElement(By.id("Email")).sendKeys("test");
     driver.findElement(By.id("next")).click();
     driver.findElement(By.id("PersistentCookie")).click();
-    driver.findElement(By.id("Passwd")).sendKeys("vtec1986");
+    driver.findElement(By.id("Passwd")).sendKeys("test");
     driver.findElement(By.id("signIn")).click();
     driver.findElement(By.id(":2t")).click();
 
